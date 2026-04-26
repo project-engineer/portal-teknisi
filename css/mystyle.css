@@ -1,0 +1,23 @@
+.col-2 {
+    background-color: #343131;
+    color: #d4d4d4;
+}
+
+.header {
+    background-color: #ca0580;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}

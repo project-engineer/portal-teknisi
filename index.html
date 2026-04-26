@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Teknisi - Documentation Of Engineering</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mystyle.css">
+</head>
+
+<body>
+  <nav class="navbar header bg-gradient">
+    <button class="btn ms-3 btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
+      Menu
+    </button>
+    <div class="container justify-content-center">
+      <span class="text-uppercase navbar-brand mb-0 h1 text-white ">Documentation Of Engineering</span>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">List of Documentation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="container-fluid">
+            <ul style="list-style-type: none">
+              <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#pendahuluan-collapse"
+                role="button" aria-expanded="false" aria-controls="pendahuluan-collapse">Pendahuluan</li>
+              <ul class="collapse" id="pendahuluan-collapse" style="list-style-type: none">
+                <li class="mb-2">
+                  <a href="index.html">Wel come</a>
+                </li>
+                <li class="mb-2">
+                  <a href="petunjuk.html">Petunjuk</a>
+                </li>
+              </ul>
+
+              <li class="mb-2 border-bottom">
+                <a href="">Jadwal PMT</a>
+              </li>
+
+              <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#pmt-collapse"
+                role="button" aria-expanded="false" aria-controls="pmt-collapse">Form PMT</li>
+              <ul class="collapse" id="pmt-collapse" style="list-style-type: none">
+                <li class="mb-2">
+                  <a href="">Bestpack</a>
+                </li>
+                <li class="mb-2">
+                  <a href="">Powerpack</a>
+                </li>
+              </ul>
+
+              <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#gudang-collapse"
+                role="button" aria-expanded="false" aria-controls="gudang-collapse">Gudang Spare Part</li>
+              <ul class="collapse" id="gudang-collapse" style="list-style-type: none">
+                <li class="mb-2">
+                  <a href="">Pencarian</a>
+                </li>
+                <li class="mb-2">
+                  <a href="">Pengambilan</a>
+                </li>
+                <li class="mb-2">
+                  <a href="">Kedatangan</a>
+                </li>
+                <li class="mb-2">
+                  <a href="">Editor</a>
+                </li>
+                <li class="mb-2">
+                  <a href="">Item baru</a>
+                </li>
+              </ul>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="container mt-3 border-bottom">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" aria-current="page">Pendahuluan</li>
+              <li class="breadcrumb-item active" aria-current="page">Welcome</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="container mt-3">
+          <h2>Selamat Datang</h2>
+          <p>Anda sedang berada di website resmi Teknisi Heavenly Blush.</p>
+
+          <p>Di website ini, yang bisa anda lakukan adalah:</p>
+          <ol>
+            <li>Melihat jadwal Preventive Maintenance dari mesin-mesin yang ada di HB.</li>
+            <li>Mengisi form Preventive Maintenance</li>
+            <li>Melihat, mengambil dan menambahkan spare part</li>
+            <li>Membaca instruksi kerja, dan melihat langkah-langkah <em>Troubleshooting</em> mesin</li>
+          </ol>
+          <br>
+          <h2>Petunjuk Penggunaan Website Ini</h2>
+          <br>
+          <h3>Melihat memilih menu</h3>
+          <p>Untuk memilih menu yang akan digunakan kamu bisa mengikuti langkah-langkah di bawah:</p>
+          <ol>
+            <li>Tekan tombol menu pada bar dikiri atas</li>
+            <img src="asset/tombol-menu.png" class="img-fluid mb-5 mt-2" alt="tombol menu">
+
+            <li>Akan muncul menu di sisi kiri layar anda, anda bisa memilih menu halaman yang ingin anda gunakan</li>
+            <img src="asset/offcanvas.png" class="img-fluid mb-5 mt-2" alt="menu">
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
