@@ -42,9 +42,16 @@
               </li>
             </ul>
 
-            <li class="mb-0 ">
-              <p class="anchor border-bottom mb-1" onclick="jadwal_pmt('pages/jadwal-pmt.html')">Jadwal PMT</p>
-            </li>
+
+            <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#jadwal-collapse"
+              role="button" aria-expanded="false" aria-controls="jadwal-collapse">Jadwal PMT</li>
+            <ul class="collapse" id="jadwal-collapse" style="list-style-type: none">
+              <li>
+                <p class="anchor mb-1 border-bottom" onclick="jadwal_pmt('pages/jadwal-pmt.html', 'Mei-2026')">Mei 2026
+                </p>
+              </li>
+            </ul>
+
 
             <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#pmt-collapse" role="button"
               aria-expanded="false" aria-controls="pmt-collapse">Form PMT</li>
