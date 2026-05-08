@@ -1,9 +1,13 @@
 function bestpack() {
-    document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFbQkifXrnRKuHdyI2yRY6JiiV8qyrKQjiufsuPBOvNqooA/viewform?embedded=true" width="640" height="3739" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>'
+    document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnFbQkifXrnRKuHdyI2yRY6JiiV8qyrKQjiufsuPBOvNqooA/viewform?embedded=true" width="640" height="3739" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>';
 }
 
 function powerpack() {
-    document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSck3oHzqQvuBHo3Gusrr4sME6oiY0tHSlugV1_eRQPluZmZtw/viewform?embedded=true" width="640" height="3991" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>'
+    document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSck3oHzqQvuBHo3Gusrr4sME6oiY0tHSlugV1_eRQPluZmZtw/viewform?embedded=true" width="640" height="3991" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>';
+}
+
+function retort() {
+    document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpllkYQIYndSVnpyc3-9sCk1ZKXptYGDn-I00Z38Y01KlbpA/viewform?embedded=true" width="640" height="6533" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>';
 }
 
 function jadwal_pmt(f, m) {
@@ -19,11 +23,14 @@ function jadwal_pmt(f, m) {
 }
 
 function tampilkan(data) {
-    // const table = document.getElementById('sheet-table');
-    // const loading = document.getElementById('loading');
+    const table = document.getElementById('sheet-table');
+    const loading = document.getElementById('loading');
     const headerRow = document.getElementById('table-header');
     const body = document.getElementById('table-body');
     // let data = {};
+
+    loading.classList.add('d-none');
+    table.classList.remove('d-none');
 
     for (let i = 0; i < 5; i++) {
         let th = document.createElement('th');
@@ -51,30 +58,5 @@ function tampilkan(data) {
         }
         body.appendChild(tr);
     }
-
-    // headerRow.innerHTML = '';
-    // body.innerHTML = '';
-    // console.log(data);
-    // if (data.length > 0) {
-    //     // 1. Buat Header secara dinamis
-    //     Object.keys(data[0]).forEach(key => {
-    //         let th = document.createElement('th');
-    //         th.innerText = key;
-    //         headerRow.appendChild(th);
-    //     });
-
-    //     // 2. Isi Baris Data
-    //     data.forEach(item => {
-    //         let tr = document.createElement('tr');
-    //         Object.values(item).forEach(val => {
-    //             let td = document.createElement('td');
-    //             td.innerText = val;
-    //             tr.appendChild(td);
-    //         });
-    //         body.appendChild(tr);
-    //     });
-
-
-    // }
 
 }
