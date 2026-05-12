@@ -10,6 +10,19 @@ function retort() {
     document.getElementById("konten").innerHTML = '<div class="ratio" style="--bs-aspect-ratio: 300%;"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfpllkYQIYndSVnpyc3-9sCk1ZKXptYGDn-I00Z38Y01KlbpA/viewform?embedded=true" width="640" height="6533" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>';
 }
 
+function troubleshooting(f) {
+    fetch(f)
+        .then(Response => Response.text())
+        .then(data => { document.getElementById('konten').innerHTML = data; });
+}
+
+function knowledge(f) {
+    fetch(f)
+        .then(Response => Response.text())
+        .then(data => { document.getElementById('konten').innerHTML = data; });
+}
+
+
 function jadwal_pmt(f, m) {
     fetch(f)
         .then(Response => Response.text())

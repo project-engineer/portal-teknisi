@@ -98,11 +98,15 @@
                   role="button" aria-expanded="false" aria-controls="pandan-collapse">Pandan</li>
                 <ul class="collapse" id="pandan-collapse" style="list-style-type: none">
                   <li class="mb-2">
-                    <p class="anchor mb-1 border-bottom" onclick="">Ganti Mechanical Seal Centrifugal Pump Alva Lafal
+                    <p class="anchor mb-1 border-bottom"
+                      onclick="troubleshooting('pages/troubleshooting/change_mech_seal.html')">Ganti Mechanical Seal
+                      Centrifugal Pump Alva Lafal
                     </p>
                   </li>
                   <li class="mb-2">
-                    <p class="anchor mb-1 border-bottom" onclick="">Ganti Mechanical Seal Scanima</p>
+                    <p class="anchor mb-1 border-bottom"
+                      onclick="troubleshooting('pages/troubleshooting/change_mech_seal_scanima.html')">Ganti Mechanical
+                      Seal Scanima</p>
                   </li>
                 </ul>
 
@@ -110,13 +114,38 @@
                   role="button" aria-expanded="false" aria-controls="Flamboyan-collapse">Flamboyan</li>
                 <ul class="collapse" id="Flamboyan-collapse" style="list-style-type: none;">
                   <li class="mb-2">
-                    <p class="anchor mb-1 border-bottom" onclick="">Menghilangkan kerutan pada Lid</p>
+                    <p class="anchor mb-1 border-bottom"
+                      onclick="troubleshooting('pages/troubleshooting/kerutan_lid.html')">Menghilangkan kerutan pada Lid
+                    </p>
                   </li>
                   <li class="mb-2">
-                    <p class="anchor mb-1 border-bottom" onclick="">Berbagai trouble pada suhu head seal</p>
+                    <p class="anchor mb-1 border-bottom"
+                      onclick="troubleshooting('pages/troubleshooting/suhu_head_seal.html')">Berbagai trouble pada suhu
+                      head seal</p>
                   </li>
                 </ul>
+
+                <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#Umum-collapse"
+                  role="button" aria-expanded="false" aria-controls="Umum-collapse">Umum</li>
+                <ul class="collapse" id="Umum-collapse" style="list-style-type: none;">
+                  <li class="mb-2">
+                    <p class="anchor mb-1 border-bottom"
+                      onclick="troubleshooting('pages/troubleshooting/repair-foot-switch.html')">
+                      Repair
+                      Foot Switch</p>
+                  </li>
+
+                </ul>
               </ul>
+              <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#artikel-collapse"
+                role="button" aria-expanded="false" aria-controls="artikel-collapse">Knowledge Article</li>
+              <ul class="collapse" id="artikel-collapse" style="list-style-type: none">
+                <li class="mb-2">
+                  <p class="anchor mb-1 border-bottom" onclick="knowledge('pages/knowledge/KA1.html')">Kenapa Gramasi
+                    Yobase Granola Sering Berbeda Antara Nozzle 1 dan 2?</p>
+                </li>
+              </ul>
+
             </ul>
           </div>
 
