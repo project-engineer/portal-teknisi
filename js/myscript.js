@@ -30,6 +30,7 @@ function getInputFilter(mode) {
     }
 
     if (mode == 'reset') {
+        document.getElementById('filter').value = "";
         data_filtered = Array.from(data_part);
         data_filtered.shift();
     }
@@ -230,15 +231,6 @@ function simpanItem() {
     item.lokasi = document.getElementById('inputLokasi').value;
     item.unique = document.getElementById('inputUniqueID').value;
 
-    document.getElementById('inputNamaItem').value = "";
-    document.getElementById('inputTypePart').value = "";
-    document.getElementById('inputMesin').value = "";
-    document.getElementById('inputJumlah').value = "";
-    document.getElementById('inputSerialNumber').value = "";
-    document.getElementById('inputLokasi').value = "";
-    document.getElementById('inputInisial').value = "";
-    document.getElementById('inputUniqueID').value = "";
-
 
     const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
 
@@ -250,6 +242,21 @@ function simpanItem() {
         body: JSON.stringify(item)
     })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => feedback(data['status']))
         .catch(error => console.error('Error:', error));
+}
+
+function feedback(m) {
+    if (m == 'sukses') {
+        document.getElementById('inputNamaItem').value = "";
+        document.getElementById('inputTypePart').value = "";
+        document.getElementById('inputMesin').value = "";
+        document.getElementById('inputJumlah').value = "";
+        document.getElementById('inputSerialNumber').value = "";
+        document.getElementById('inputLokasi').value = "";
+        document.getElementById('inputInisial').value = "";
+        document.getElementById('inputUniqueID').value = "";
+    } else {
+        alert('Gagal Menyimpan');
+    }
 }
