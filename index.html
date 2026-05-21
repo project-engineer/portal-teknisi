@@ -57,25 +57,14 @@
               </ul>
 
 
-              <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#pmt-collapse"
-                role="button" aria-expanded="false" aria-controls="pmt-collapse">Form PMT</li>
-              <ul class="collapse" id="pmt-collapse" style="list-style-type: none">
-                <li>
-                  <p class="anchor mb-1 border-bottom" onclick="bestpack()">Bestpack</p>
-                </li>
-                <li>
-                  <p class="anchor mb-1 border-bottom" onclick="powerpack()">Powerpack</p>
-                </li>
-                <li>
-                  <p class="anchor mb-1 border-bottom" onclick="retort()">Retort</p>
-                </li>
-              </ul>
+              <li class="anchor border-bottom mb-2" onclick="list_pmt('pages/list-form-pmt.html')">Form PMT</li>
 
               <li class="border-bottom mb-2 dropdown-toggle" data-bs-toggle="collapse" href="#gudang-collapse"
                 role="button" aria-expanded="false" aria-controls="gudang-collapse">Gudang Spare Part</li>
               <ul class="collapse" id="gudang-collapse" style="list-style-type: none">
                 <li class="mb-2">
-                  <a href="">Pencarian</a>
+                  <p class="anchor mb-1 border-bottom"
+                    onclick="list_sparepart('pages/sparepart/list.html', 'listsparepart')">Pencarian</p>
                 </li>
                 <li class="mb-2">
                   <a href="">Pengambilan</a>
@@ -87,7 +76,7 @@
                   <a href="">Editor</a>
                 </li>
                 <li class="mb-2">
-                  <a href="">Item baru</a>
+                  <p class="anchor mb-1 border-bottom" onclick="inputSparePart()">Item Baru</p>
                 </li>
               </ul>
 

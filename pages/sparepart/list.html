@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <!-- Spinner Loading -->
+    <div id="loading" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-muted">Mengambil data dari Google Sheet...</p>
+    </div>
+
+    <!-- Tabel Bootstrap -->
+    <div id="sheet-table" class="mt-2 container-fluid d-none">
+        <h2>List Spare Part</h2>
+        <!-- <form id="filter"> -->
+        <div class="row mb-3">
+            <div class="col">
+                <input id="filter" type="text" class="form-control" placeholder="Nama Item" aria-label="Nama Item">
+            </div>
+            <div class="col">
+                <button onclick="getInputFilter('filter')" class="btn btn-primary">Filter</button>
+                <button onclick="getInputFilter('reset')" class="btn btn-success">Reset
+                    Filter</button>
+            </div>
+        </div>
+        <!-- </form> -->
+        <table class="table table-striped table-bordered">
+            <thead class="table-info text-center">
+                <tr id="table-header"></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+</div>

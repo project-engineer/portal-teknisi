@@ -1,0 +1,92 @@
+<div class="container-fluid mt-5 mb-5">
+    <h3>Registrasi Item Baru</h3>
+    <div class="row mb-3 mt-3">
+        <label for="inputNamaItem" class="col-sm-2 col-form-label">Nama Item</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputNamaItem" placeholder="Contoh: Straight Fitting">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputTypePart" class="col-sm-2 col-form-label">Type / Ukuran</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputTypePart" placeholder="Contoh: 6 mm x 6 mm">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" for="inputMesin">Line / Mesin</label>
+        <div class="col-sm-7">
+            <select class="form-select" id="inputMesin">
+                <option selected>Pilih....</option>
+                <option value="All Line">All Line</option>
+                <option value="Filler G100">Filler G100</option>
+                <option value="New Filler G1000">New Filler G1000</option>
+                <option value="Filler Miruku">Filler Miruku</option>
+                <option value="Thermizer">Thermizer</option>
+                <option value="Homogenizer FBF">Homogenizer FBF</option>
+                <option value="Homogenizer Tetra">Homogenizer Tetra</option>
+                <option value="Scanima">Scanima</option>
+                <option value="Mixer SPX">Mixer SPX</option>
+                <option value="Bestpack">Bestpack</option>
+                <option value="Powerpack">Powerpack</option>
+                <option value="Other Carton Sealer">Other Carton Sealer</option>
+                <option value="Checkweigher Anritsu">Checkweigher Anritsu</option>
+                <option value="Printer Hitachi">Printer Hitachi</option>
+                <option value="Printer Drucker">Printer Drucker</option>
+                <option value="Printer Rottweil">Printer Rottweil</option>
+                <option value="TFTC">TFTC</option>
+                <option value="Trepko">Trepko</option>
+                <option value="Printer Marsh">Printer Marsh</option>
+                <option value="Filler G1000">Filler G1000</option>
+                <option value="Centrifugal Pump">Centrifugal Pump</option>
+                <option value="Valve Alfa Laval">Valve Alfa Laval</option>
+                <option value="Valve Minox">Valve Minox</option>
+                <option value="Valve SPV">Valve SPV</option>
+                <option value="Electrical">Electrical</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputJumlah" class="col-sm-2 col-form-label">Jumlah</label>
+        <div class="col-sm-7">
+            <input type="number" class="form-control" id="inputJumlah" placeholder="Contoh: 10">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputSerialNumber" class="col-sm-2 col-form-label">Serial Number</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputSerialNumber"
+                placeholder="Tidak Wajib (optional), tapi jika ada harap masukan">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputLokasi" class="col-sm-2 col-form-label">Lokasi Penyimpanan</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputLokasi" placeholder="Contoh: A1">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputInisial" class="col-sm-2 col-form-label">Inisial Nama Item</label>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" id="inputInisial" placeholder="Contoh: SF">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="inputUniqueID" class="col-sm-2 col-form-label">Unique ID</label>
+        <div class="col-5">
+            <input type="text" class="form-control" id="inputUniqueID" aria-label="Disabled" disabled
+                placeholder="Auto generate">
+        </div>
+        <div class="col">
+            <button class="btn btn-warning" id="tombol_generate" onclick="autoGenerate()">Generate</button>
+        </div>
+    </div>
+
+    <button id="tombol_simpan" class="btn btn-primary disabled" onclick="simpanItem()">SIMPAN</button>
+</div>
