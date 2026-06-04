@@ -1,4 +1,10 @@
 let data_part = [];
+let keranjang = [];
+let part_count = 0;
+
+function updateCount() {
+    document.getElementById('part-count').innerText = part_count;
+}
 
 function getInputFilter(mode) {
 
@@ -39,13 +45,18 @@ function getInputFilter(mode) {
     while (body.hasChildNodes()) {
         body.removeChild(body.firstChild);
     }
-    for (let i = 0; i < data_filtered.length; i++) {
+    for (let i = 1; i < data_filtered.length; i++) {
         let tr = document.createElement('tr');
         for (let j = 0; j < data_filtered[0].length; j++) {
             let td = document.createElement('td');
             td.innerText = data_filtered[i][j];
             if (j > 0) {
                 td.classList.add("text-center");
+            }
+            if (j == 7) {
+                td.innerHTML = data_part[i][j];
+            } else {
+                td.innerText = data_part[i][j];
             }
             tr.appendChild(td);
         }
@@ -109,20 +120,31 @@ function inputSparePart() {
         .then(data => { document.getElementById('konten').innerHTML = data; });
 }
 
+function ambilPart() {
+    fetch('pages/sparepart/ambil.html')
+        .then(Response => Response.text())
+        .then(data => { document.getElementById('konten').innerHTML = data; });
+
+
+    setTimeout(() => { tampilkan(keranjang, 'ambil part'); }, 1000);
+}
+
 function tampilkan(data, page) {
     // console.log(data);
-    data_part = data;
+
+
     const table = document.getElementById('sheet-table');
     const loading = document.getElementById('loading');
     const headerRow = document.getElementById('table-header');
     const body = document.getElementById('table-body');
     // let data = {};
 
-    loading.classList.add('d-none');
-    table.classList.remove('d-none');
+
 
 
     if (page == 'pmt') {
+        loading.classList.add('d-none');
+        table.classList.remove('d-none');
         for (let i = 0; i < 5; i++) {
             let th = document.createElement('th');
             th.innerText = data[0][i];
@@ -150,17 +172,34 @@ function tampilkan(data, page) {
         }
     }
     if (page == 'list part') {
-        for (let i = 0; i < 7; i++) {
+        loading.classList.add('d-none');
+        table.classList.remove('d-none');
+        updateCount();
+        data_part = data;
+        data_part[0].push('Ambil/Tambah');
+
+        console.log(data_part);
+
+        for (let i = 1; i < data_part.length; i++) {
+            const text = '<p><span class="anchor btn btn-secondary btn-sm" onclick="masukanKeranjang(\'' + data_part[i][1] + '\')">Ambil</span> - <span class="anchor btn btn-secondary btn-sm" onclick="">Tambah</span></p>';
+            data_part[i].push(text);
+        }
+
+        for (let i = 1; i < 9; i++) {
             let th = document.createElement('th');
-            th.innerText = data[0][i];
+            th.innerText = data_part[0][i];
             // console.log(th);
             headerRow.appendChild(th);
         }
-        for (let i = 1; i < data.length; i++) {
+        for (let i = 1; i < data_part.length; i++) {
             let tr = document.createElement('tr');
-            for (let j = 0; j < data[0].length; j++) {
+            for (let j = 1; j < data_part[0].length; j++) {
                 let td = document.createElement('td');
-                td.innerText = data[i][j];
+                if (j == 8) {
+                    td.innerHTML = data_part[i][j];
+                } else {
+                    td.innerText = data_part[i][j];
+                }
                 if (j > 0) {
                     td.classList.add("text-center");
                 }
@@ -171,6 +210,8 @@ function tampilkan(data, page) {
     }
 
     if (page == 'list_pmt') {
+        loading.classList.add('d-none');
+        table.classList.remove('d-none');
         for (let i = 0; i < 2; i++) {
             let th = document.createElement('th');
             th.innerText = data[0][i];
@@ -191,6 +232,31 @@ function tampilkan(data, page) {
                     td.classList.add("text-center");
                 }
                 tr.appendChild(td);
+            }
+            body.appendChild(tr);
+        }
+    }
+
+    if (page == 'ambil part') {
+        for (let x = 0; x < data.length; x++) {
+            let tr = document.createElement('tr');
+            for (let y = 1; y < data[0].length; y++) {
+                let td = document.createElement('td');
+                if (y != 1) {
+                    td.classList.add('text-center');
+                }
+
+                if (y == 4) {
+                    const text = '<input type="number" class="form-control" id="inputJumlah" value="' + data[x][y] + '">';
+                    td.innerHTML = text;
+                } else if (y == 5) {
+                    td.innerHTML = data[x][y];
+                } else {
+                    td.innerText = data[x][y];
+                }
+
+                tr.appendChild(td);
+                // console.log(tr);
             }
             body.appendChild(tr);
         }
@@ -223,6 +289,7 @@ function autoGenerate() {
 
 function simpanItem() {
     const item = {};
+    item.mode = 'simpan baru';
     item.nama = document.getElementById('inputNamaItem').value;
     item.type = document.getElementById('inputTypePart').value;
     item.mesin = document.getElementById('inputMesin').value;
@@ -247,7 +314,7 @@ function simpanItem() {
 }
 
 function feedback(m) {
-    if (m == 'sukses') {
+    if (m == 'sukses menyimpan') {
         document.getElementById('inputNamaItem').value = "";
         document.getElementById('inputTypePart').value = "";
         document.getElementById('inputMesin').value = "";
@@ -256,7 +323,89 @@ function feedback(m) {
         document.getElementById('inputLokasi').value = "";
         document.getElementById('inputInisial').value = "";
         document.getElementById('inputUniqueID').value = "";
+        alert('Berhasil Menyimpan');
+    } else if (m == 'sukses mengambil') {
+        alert('Berhasil Mengambil Stock');
+        while (keranjang.length != 0) {
+            keranjang.pop();
+        }
+        part_count = 0;
+        tampilkan(keranjang, 'ambil part');
     } else {
-        alert('Gagal Menyimpan');
+        alert('Gagal');
+    }
+}
+
+function masukanKeranjang(id) {
+    const isexist = keranjang.some(row => row.includes(id));
+
+    if (isexist == true) {
+        alert('PART SUDAH ADA DI LIST PENGAMBILAN');
+    } else {
+        const item = new Array(id);
+        for (let i = 1; i < data_part.length; i++) {
+            if (data_part[i][1] == id) {
+                // item.push(data_part.indexOf(id));
+                item.push(data_part[i][2]);
+                item.push(data_part[i][3]);
+                item.push(1);
+                item.push('<span class="anchor text-danger" onclick="hapusItemKeranjang(\'' + id + '\')">Hapus</span>');
+                item.unshift(data_part[i][0]);
+            }
+        }
+        keranjang.push(item);
+        part_count++;
+        updateCount();
+        alert('PART BERHASIL DITAMBAHKAN KE LIST PENGAMBILAN');
+    }
+    console.log(keranjang);
+}
+
+function hapusItemKeranjang(id) {
+    for (let i = 0; i < keranjang.length; i++) {
+        const transit = Array.from(keranjang[i]);
+        const checking = transit.includes(id);
+        if (checking == true) {
+            keranjang.splice([i], 1);
+            part_count--;
+        }
+    }
+    const body = document.getElementById('table-body');
+    while (body.hasChildNodes()) {
+        body.removeChild(body.firstChild);
+    }
+
+    tampilkan(keranjang, 'ambil part');
+}
+
+function submitPengambilan() {
+    let items = {};
+    items.mode = 'ambil';
+    items.row = [];
+    items.jumlah = [];
+
+    let person = prompt('Please, enter your name:');
+    if (person == null || person == "") {
+        alert('Gagal Terkirim Karena Nama Tidak Valid');
+    } else {
+        items.person = person;
+        for (let i = 0; i < keranjang.length; i++) {
+
+            items['row'].push(keranjang[i][0]);
+            items['jumlah'].push(keranjang[i][4]);
+        }
+
+        const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(items)
+        })
+            .then(response => response.json())
+            .then(data => feedback(data['status']))
+            .catch(error => console.error('Error:', error));
     }
 }

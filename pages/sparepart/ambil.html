@@ -1,0 +1,23 @@
+<div class="container">
+    <h2 class="mt-3">Ambil Part</h2>
+    <div class="container-fluid border-bottom pb-2">
+        <button class="btn btn-primary me-1"
+            onclick="list_sparepart('pages/sparepart/list.html', 'listsparepart')">Tambah Part</button>
+        <button class="btn btn-success mp-1" onclick="submitPengambilan()">Submit</button>
+    </div>
+    <div class="container-fluid mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="table-info text-center">
+                <tr id="table-header">
+                    <th>Unique ID</th>
+                    <th>Nama Item</th>
+                    <th>Type / Ukuran</th>
+                    <th>Jumlah</th>
+                    <th>Pembatalan</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+</div>
