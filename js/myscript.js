@@ -246,10 +246,7 @@ function tampilkan(data, page) {
                     td.classList.add('text-center');
                 }
 
-                if (y == 4) {
-                    const text = '<input type="number" class="form-control" id="inputJumlah" value="' + data[x][y] + '">';
-                    td.innerHTML = text;
-                } else if (y == 5) {
+                if (y == 5) {
                     td.innerHTML = data[x][y];
                 } else {
                     td.innerText = data[x][y];
@@ -352,7 +349,7 @@ function masukanKeranjang(id) {
                 // item.push(data_part.indexOf(id));
                 item.push(data_part[i][2]);
                 item.push(data_part[i][3]);
-                item.push(1);
+                item.push(prompt('Quantity:'));
                 item.push('<span class="anchor text-danger" onclick="hapusItemKeranjang(\'' + id + '\')">Hapus</span>');
                 item.unshift(data_part[i][0]);
             }
