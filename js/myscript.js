@@ -289,6 +289,7 @@ function autoGenerate() {
 
 function simpanItem() {
     const item = {};
+    item.person = prompt("Enter your name:");
     item.mode = 'simpan baru';
     item.nama = document.getElementById('inputNamaItem').value;
     item.type = document.getElementById('inputTypePart').value;
@@ -330,6 +331,9 @@ function feedback(m) {
             keranjang.pop();
         }
         part_count = 0;
+        while (body.hasChildNodes()) {
+            body.removeChild(body.firstChild);
+        }
         tampilkan(keranjang, 'ambil part');
     } else {
         alert('Gagal');
@@ -382,6 +386,8 @@ function submitPengambilan() {
     let items = {};
     items.mode = 'ambil';
     items.row = [];
+    items.nama = [];
+    items.type = [];
     items.jumlah = [];
 
     let person = prompt('Please, enter your name:');
@@ -392,6 +398,8 @@ function submitPengambilan() {
         for (let i = 0; i < keranjang.length; i++) {
 
             items['row'].push(keranjang[i][0]);
+            items['nama'].push(keranjang[i][2]);
+            items['type'].push(keranjang[i][3]);
             items['jumlah'].push(keranjang[i][4]);
         }
 
