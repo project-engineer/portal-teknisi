@@ -1,9 +1,14 @@
 let data_part = [];
 let keranjang = [];
-let part_count = 0;
+let part_count_pengambilan = 0;
+let part_count_penambahan = 0;
 
-function updateCount() {
-    document.getElementById('part-count').innerText = part_count;
+function updateCountPengambilan() {
+    document.getElementById('part-count-pengambilan').innerText = part_count_pengambilan;
+}
+
+function updateCountPenambahan() {
+    document.getElementById('part-count-pennambahan').innerText = part_count_penambahan;
 }
 
 function getInputFilter(mode) {
@@ -14,49 +19,49 @@ function getInputFilter(mode) {
     const headerRow = document.getElementById('table-header');
     const body = document.getElementById('table-body');
     // const filter = capitalizeWords(_filter);
-
+    console.log(filter);
     let data_filtered = [];
 
     if (mode == 'filter') {
         for (let i = 1; i < data_part.length; i++) {
 
-            if (data_part[i][1].toLowerCase().includes(filter)) {
-                data_filtered.push(data_part[i]);
-            }
             if (data_part[i][2].toLowerCase().includes(filter)) {
                 data_filtered.push(data_part[i]);
             }
             if (data_part[i][3].toLowerCase().includes(filter)) {
                 data_filtered.push(data_part[i]);
             }
-            if (data_part[i][5].toLowerCase().includes(filter)) {
+            if (data_part[i][4].toLowerCase().includes(filter)) {
                 data_filtered.push(data_part[i]);
             }
+            // if (data_part[i][5].toLowerCase().includes(filter)) {
+            //     data_filtered.push(data_part[i]);
+            // }
         }
     }
-
+    console.log(data_filtered);
     if (mode == 'reset') {
         document.getElementById('filter').value = "";
         data_filtered = Array.from(data_part);
         data_filtered.shift();
     }
 
-
     while (body.hasChildNodes()) {
         body.removeChild(body.firstChild);
     }
+
     for (let i = 1; i < data_filtered.length; i++) {
         let tr = document.createElement('tr');
-        for (let j = 0; j < data_filtered[0].length; j++) {
+        for (let j = 1; j < data_filtered[0].length; j++) {
             let td = document.createElement('td');
             td.innerText = data_filtered[i][j];
             if (j > 0) {
                 td.classList.add("text-center");
             }
-            if (j == 7) {
-                td.innerHTML = data_part[i][j];
+            if (j == 8) {
+                td.innerHTML = data_filtered[i][j];
             } else {
-                td.innerText = data_part[i][j];
+                td.innerText = data_filtered[i][j];
             }
             tr.appendChild(td);
         }
@@ -174,14 +179,14 @@ function tampilkan(data, page) {
     if (page == 'list part') {
         loading.classList.add('d-none');
         table.classList.remove('d-none');
-        updateCount();
+        updateCountPengambilan();
         data_part = data;
         data_part[0].push('Ambil/Tambah');
 
         console.log(data_part);
 
         for (let i = 1; i < data_part.length; i++) {
-            const text = '<p><span class="anchor btn btn-secondary btn-sm" onclick="masukanKeranjang(\'' + data_part[i][1] + '\')">Ambil</span> - <span class="anchor btn btn-secondary btn-sm" onclick="">Tambah</span></p>';
+            const text = '<p><span class="anchor btn btn-secondary btn-sm" onclick="masukanKeranjang(\'' + data_part[i][1] + '\')">Ambil</span> - <span class="anchor btn btn-secondary btn-sm" onclick="masukanGudang(\'' + data_part[i][1] + '\')">Tambah</span></p>';
             data_part[i].push(text);
         }
 
@@ -327,11 +332,13 @@ function feedback(m) {
         while (keranjang.length != 0) {
             keranjang.pop();
         }
-        part_count = 0;
+        part_count_pengambilan = 0;
         while (body.hasChildNodes()) {
             body.removeChild(body.firstChild);
         }
         tampilkan(keranjang, 'ambil part');
+    } else if (m == 'sukses menambahkan') {
+        alert('Berhasil rerstock item');
     } else {
         alert('Gagal');
     }
@@ -355,11 +362,45 @@ function masukanKeranjang(id) {
             }
         }
         keranjang.push(item);
-        part_count++;
-        updateCount();
+        part_count_pengambilan++;
+        updateCountPengambilan();
         alert('PART BERHASIL DITAMBAHKAN KE LIST PENGAMBILAN');
     }
     console.log(keranjang);
+}
+
+function masukanGudang(id) {
+    const qty = prompt('Berapa quantity nyang masuk?');
+    const person = prompt('Siapa nama anda?');
+    let item = {};
+    item.mode = 'tambah';
+    for (let i = 1; i < data_part.length; i++) {
+        if (data_part[i][1] == id) {
+            item.row = data_part[i][0];
+            item.qty = qty;
+            item.person = person;
+            item.nama = data_part[i][1];
+            item.type = data_part[i][3];
+            break;
+        }
+    }
+    console.log(item);
+    if (qty == null || qty == 0) {
+        alert('Penambahan dibatalkan');
+    } else {
+        const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(item)
+        })
+            .then(response => response.json())
+            .then(data => feedback(data['status']))
+            .catch(error => console.error('Error:', error));
+    }
 }
 
 function hapusItemKeranjang(id) {
@@ -368,7 +409,7 @@ function hapusItemKeranjang(id) {
         const checking = transit.includes(id);
         if (checking == true) {
             keranjang.splice([i], 1);
-            part_count--;
+            part_count_pengambilan--;
         }
     }
     const body = document.getElementById('table-body');
