@@ -329,16 +329,9 @@ function feedback(m) {
         alert('Berhasil Menyimpan');
     } else if (m == 'sukses mengambil') {
         alert('Berhasil Mengambil Stock');
-        while (keranjang.length != 0) {
-            keranjang.pop();
-        }
-        part_count_pengambilan = 0;
-        while (body.hasChildNodes()) {
-            body.removeChild(body.firstChild);
-        }
-        tampilkan(keranjang, 'ambil part');
     } else if (m == 'sukses menambahkan') {
         alert('Berhasil rerstock item');
+
     } else {
         alert('Gagal');
     }
@@ -372,7 +365,7 @@ function masukanKeranjang(id) {
 function masukanGudang(id) {
     const qty = prompt('Berapa quantity nyang masuk?');
     const person = prompt('Siapa nama anda?');
-    let item = {};
+    const item = {};
     item.mode = 'tambah';
     for (let i = 1; i < data_part.length; i++) {
         if (data_part[i][1] == id) {
@@ -381,13 +374,36 @@ function masukanGudang(id) {
             item.person = person;
             item.nama = data_part[i][1];
             item.type = data_part[i][3];
+            data_part[i][5] = Number(data_part[i][5]) + Number(qty);
+            console.log(data_part[i][5]);
             break;
         }
     }
-    console.log(item);
+    // console.log(item);
     if (qty == null || qty == 0) {
         alert('Penambahan dibatalkan');
     } else {
+        const body = document.getElementById('table-body');
+        while (body.hasChildNodes()) {
+            body.removeChild(body.firstChild);
+        }
+
+        for (let i = 1; i < data_part.length; i++) {
+            let tr = document.createElement('tr');
+            for (let j = 1; j < data_part[0].length; j++) {
+                let td = document.createElement('td');
+                if (j == 8) {
+                    td.innerHTML = data_part[i][j];
+                } else {
+                    td.innerText = data_part[i][j];
+                }
+                if (j > 0) {
+                    td.classList.add("text-center");
+                }
+                tr.appendChild(td);
+            }
+            body.appendChild(tr);
+        }
         const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
 
         fetch(url, {
@@ -400,6 +416,9 @@ function masukanGudang(id) {
             .then(response => response.json())
             .then(data => feedback(data['status']))
             .catch(error => console.error('Error:', error));
+
+
+
     }
 }
 
@@ -440,6 +459,17 @@ function submitPengambilan() {
             items['type'].push(keranjang[i][3]);
             items['jumlah'].push(keranjang[i][4]);
         }
+
+        const body = document.getElementById('table-body');
+
+        while (keranjang.length != 0) {
+            keranjang.pop();
+        }
+        part_count_pengambilan = 0;
+        while (body.hasChildNodes()) {
+            body.removeChild(body.firstChild);
+        }
+        tampilkan(keranjang, 'ambil part');
 
         const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
 
