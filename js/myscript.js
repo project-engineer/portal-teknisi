@@ -2,6 +2,7 @@ let data_part = [];
 let keranjang = [];
 let part_count_pengambilan = 0;
 let part_count_penambahan = 0;
+const _person = "";
 
 function updateCountPengambilan() {
     document.getElementById('part-count-pengambilan').innerText = part_count_pengambilan;
@@ -291,7 +292,7 @@ function autoGenerate() {
 
 function simpanItem() {
     const item = {};
-    item.person = prompt("Enter your name:");
+    item.person = _person;
     item.mode = 'simpan baru';
     item.nama = document.getElementById('inputNamaItem').value;
     item.type = document.getElementById('inputTypePart').value;
@@ -364,14 +365,13 @@ function masukanKeranjang(id) {
 
 function masukanGudang(id) {
     const qty = prompt('Berapa quantity nyang masuk?');
-    const person = prompt('Siapa nama anda?');
     const item = {};
     item.mode = 'tambah';
     for (let i = 1; i < data_part.length; i++) {
         if (data_part[i][1] == id) {
             item.row = data_part[i][0];
             item.qty = qty;
-            item.person = person;
+            item.person = _person;
             item.nama = data_part[i][1];
             item.type = data_part[i][3];
             data_part[i][5] = Number(data_part[i][5]) + Number(qty);
@@ -446,42 +446,42 @@ function submitPengambilan() {
     items.nama = [];
     items.type = [];
     items.jumlah = [];
+    items.person = _person;
 
-    let person = prompt('Please, enter your name:');
-    if (person == null || person == "") {
-        alert('Gagal Terkirim Karena Nama Tidak Valid');
-    } else {
-        items.person = person;
-        for (let i = 0; i < keranjang.length; i++) {
+    for (let i = 0; i < keranjang.length; i++) {
 
-            items['row'].push(keranjang[i][0]);
-            items['nama'].push(keranjang[i][2]);
-            items['type'].push(keranjang[i][3]);
-            items['jumlah'].push(keranjang[i][4]);
-        }
-
-        const body = document.getElementById('table-body');
-
-        while (keranjang.length != 0) {
-            keranjang.pop();
-        }
-        part_count_pengambilan = 0;
-        while (body.hasChildNodes()) {
-            body.removeChild(body.firstChild);
-        }
-        tampilkan(keranjang, 'ambil part');
-
-        const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8'
-            },
-            body: JSON.stringify(items)
-        })
-            .then(response => response.json())
-            .then(data => feedback(data['status']))
-            .catch(error => console.error('Error:', error));
+        items['row'].push(keranjang[i][0]);
+        items['nama'].push(keranjang[i][2]);
+        items['type'].push(keranjang[i][3]);
+        items['jumlah'].push(keranjang[i][4]);
     }
+
+    const body = document.getElementById('table-body');
+
+    while (keranjang.length != 0) {
+        keranjang.pop();
+    }
+    part_count_pengambilan = 0;
+    while (body.hasChildNodes()) {
+        body.removeChild(body.firstChild);
+    }
+    tampilkan(keranjang, 'ambil part');
+
+    const url = 'https://script.google.com/macros/s/AKfycbwx7yZSD4CIdiu4vELipeLY-QKJyELrF0bG5Hx-J26okvum6OyQEuxA8oMwAm0H2FsU/exec'; // Ganti dengan URL Anda
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify(items)
+    })
+        .then(response => response.json())
+        .then(data => feedback(data['status']))
+        .catch(error => console.error('Error:', error));
+
 }
+
+window.addEventListener("load", function () {
+    _person = prompt("Siapa nama anda?");
+});
