@@ -2,7 +2,7 @@ let data_part = [];
 let keranjang = [];
 let part_count_pengambilan = 0;
 let part_count_penambahan = 0;
-const _person = "";
+let _person = "";
 
 function updateCountPengambilan() {
     document.getElementById('part-count-pengambilan').innerText = part_count_pengambilan;
