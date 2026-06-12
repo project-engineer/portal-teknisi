@@ -51,7 +51,7 @@ function getInputFilter(mode) {
         body.removeChild(body.firstChild);
     }
 
-    for (let i = 1; i < data_filtered.length; i++) {
+    for (let i = 0; i < data_filtered.length; i++) {
         let tr = document.createElement('tr');
         for (let j = 1; j < data_filtered[0].length; j++) {
             let td = document.createElement('td');
@@ -331,7 +331,7 @@ function feedback(m) {
     } else if (m == 'sukses mengambil') {
         alert('Berhasil Mengambil Stock');
     } else if (m == 'sukses menambahkan') {
-        alert('Berhasil rerstock item');
+        alert('Berhasil restock item');
 
     } else {
         alert('Gagal');
@@ -364,7 +364,7 @@ function masukanKeranjang(id) {
 }
 
 function masukanGudang(id) {
-    const qty = prompt('Berapa quantity nyang masuk?');
+    const qty = prompt('Berapa quantity yang masuk?');
     const item = {};
     item.mode = 'tambah';
     for (let i = 1; i < data_part.length; i++) {
