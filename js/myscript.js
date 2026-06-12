@@ -265,6 +265,20 @@ function tampilkan(data, page) {
         }
     }
 
+    if (page == 'oos') {
+        for (let i = 0; i < data.length; i++) {
+            let tr = document.createElement('tr');
+            for (let j = 0; j < data[0].length; j++) {
+                if (j == 1 || j == 2 || j == 3 || j == 5) {
+                    let td = document.createElement('td');
+                    td.innerText = data[i][j];
+                    tr.appendChild(td);
+                }
+            }
+            body.appendChild(tr);
+        }
+    }
+
 }
 
 
@@ -480,6 +494,24 @@ function submitPengambilan() {
         .then(data => feedback(data['status']))
         .catch(error => console.error('Error:', error));
 
+}
+
+function outofstock() {
+    let oos = [];
+
+    for (let i = 1; i < data_part.length; i++) {
+        if (data_part[i][5] <= 2) {
+            oos.push(data_part[i]);
+        }
+    }
+
+    fetch('pages/sparepart/oos.html')
+        .then(Response => Response.text())
+        .then(data => { document.getElementById('konten').innerHTML = data; });
+
+
+
+    setTimeout(() => { tampilkan(oos, 'oos'); }, 1000);
 }
 
 window.addEventListener("load", function () {
